@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lgf.mapper.DtNavigationMapper" >
+  <resultMap id="BaseResultMap" type="com.lgf.pojo.DtNavigation" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="parent_id" property="parentId" jdbcType="INTEGER" />
+    <result column="channel_id" property="channelId" jdbcType="INTEGER" />
+    <result column="nav_type" property="navType" jdbcType="NVARCHAR" />
+    <result column="name" property="name" jdbcType="NVARCHAR" />
+    <result column="title" property="title" jdbcType="NVARCHAR" />
+    <result column="sub_title" property="subTitle" jdbcType="NVARCHAR" />
+    <result column="icon_url" property="iconUrl" jdbcType="NVARCHAR" />
+    <result column="link_url" property="linkUrl" jdbcType="NVARCHAR" />
+    <result column="sort_id" property="sortId" jdbcType="INTEGER" />
+    <result column="is_lock" property="isLock" jdbcType="INTEGER" />
+    <result column="remark" property="remark" jdbcType="NVARCHAR" />
+    <result column="action_type" property="actionType" jdbcType="NVARCHAR" />
+    <result column="is_sys" property="isSys" jdbcType="INTEGER" />
+  </resultMap>
+
+<!--  <insert id="insert" parameterType="com.lgf.pojo.DtNavigation" >
+    insert into dt_navigation (id, parent_id, channel_id, 
+      nav_type, name, title, 
+      sub_title, icon_url, link_url, 
+      sort_id, is_lock, remark, 
+      action_type, is_sys)
+    values (#{id,jdbcType=INTEGER}, #{parentId,jdbcType=INTEGER}, #{channelId,jdbcType=INTEGER}, 
+      #{navType,jdbcType=NVARCHAR}, #{name,jdbcType=NVARCHAR}, #{title,jdbcType=NVARCHAR}, 
+      #{subTitle,jdbcType=NVARCHAR}, #{iconUrl,jdbcType=NVARCHAR}, #{linkUrl,jdbcType=NVARCHAR}, 
+      #{sortId,jdbcType=INTEGER}, #{isLock,jdbcType=INTEGER}, #{remark,jdbcType=NVARCHAR}, 
+      #{actionType,jdbcType=NVARCHAR}, #{isSys,jdbcType=INTEGER})
+  </insert>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update dt_navigation
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.parentId != null" >
+        parent_id = #{record.parentId,jdbcType=INTEGER},
+      </if>
+      <if test="record.channelId != null" >
+        channel_id = #{record.channelId,jdbcType=INTEGER},
+      </if>
+      <if test="record.navType != null" >
+        nav_type = #{record.navType,jdbcType=NVARCHAR},
+      </if>
+      <if test="record.name != null" >
+        name = #{record.name,jdbcType=NVARCHAR},
+      </if>
+      <if test="record.title != null" >
+        title = #{record.title,jdbcType=NVARCHAR},
+      </if>
+      <if test="record.subTitle != null" >
+        sub_title = #{record.subTitle,jdbcType=NVARCHAR},
+      </if>
+      <if test="record.iconUrl != null" >
+        icon_url = #{record.iconUrl,jdbcType=NVARCHAR},
+      </if>
+      <if test="record.linkUrl != null" >
+        link_url = #{record.linkUrl,jdbcType=NVARCHAR},
+      </if>
+      <if test="record.sortId != null" >
+        sort_id = #{record.sortId,jdbcType=INTEGER},
+      </if>
+      <if test="record.isLock != null" >
+        is_lock = #{record.isLock,jdbcType=INTEGER},
+      </if>
+      <if test="record.remark != null" >
+        remark = #{record.remark,jdbcType=NVARCHAR},
+      </if>
+      <if test="record.actionType != null" >
+        action_type = #{record.actionType,jdbcType=NVARCHAR},
+      </if>
+      <if test="record.isSys != null" >
+        is_sys = #{record.isSys,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>-->
+</mapper>

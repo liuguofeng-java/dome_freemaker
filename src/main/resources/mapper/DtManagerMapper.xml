@@ -19,7 +19,7 @@
     <result column="address" property="address" jdbcType="NVARCHAR" />
     <result column="remark" property="remark" jdbcType="NVARCHAR" />
   </resultMap>
-  <select id="userLogin" parameterType="java.lang.String" resultMap="BaseResultMap">
+  <select id="userLogin" resultMap="BaseResultMap">
     select * from dt_manager where user_name = #{username} and password = #{password}
   </select>
   <!--<insert id="insert" parameterType="com.lgf.pojo.DtManager" >

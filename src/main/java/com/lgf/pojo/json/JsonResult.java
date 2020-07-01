@@ -1,10 +1,15 @@
 package com.lgf.pojo.json;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 public class JsonResult {
     private int code;
     private String msg;
     private Object data;
     private static JsonResult jsonResult = new JsonResult();
+
     public JsonResult() {
     }
 
