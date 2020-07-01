@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lgf.mapper.DtManagerMapper" >
+  <resultMap id="BaseResultMap" type="com.lgf.pojo.DtManager" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="company_id" property="companyId" jdbcType="INTEGER" />
+    <result column="role_id" property="roleId" jdbcType="INTEGER" />
+    <result column="role_type" property="roleType" jdbcType="INTEGER" />
+    <result column="user_name" property="userName" jdbcType="NVARCHAR" />
+    <result column="password" property="password" jdbcType="NVARCHAR" />
+    <result column="salt" property="salt" jdbcType="NVARCHAR" />
+    <result column="avatar" property="avatar" jdbcType="NVARCHAR" />
+    <result column="real_name" property="realName" jdbcType="NVARCHAR" />
+    <result column="telephone" property="telephone" jdbcType="NVARCHAR" />
+    <result column="email" property="email" jdbcType="NVARCHAR" />
+    <result column="is_audit" property="isAudit" jdbcType="INTEGER" />
+    <result column="is_lock" property="isLock" jdbcType="INTEGER" />
+    <result column="add_time" property="addTime" jdbcType="TIMESTAMP" />
+    <result column="address" property="address" jdbcType="NVARCHAR" />
+    <result column="remark" property="remark" jdbcType="NVARCHAR" />
+  </resultMap>
+  <select id="userLogin" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select * from dt_manager where user_name = #{username} and password = #{password}
+  </select>
+  <!--<insert id="insert" parameterType="com.lgf.pojo.DtManager" >
+    insert into dt_manager (id, company_id, role_id, 
+      role_type, user_name, password, 
+      salt, avatar, real_name, 
+      telephone, email, is_audit, 
+      is_lock, add_time, address, 
+      remark)
+    values (#{id,jdbcType=INTEGER}, #{companyId,jdbcType=INTEGER}, #{roleId,jdbcType=INTEGER}, 
+      #{roleType,jdbcType=INTEGER}, #{userName,jdbcType=NVARCHAR}, #{password,jdbcType=NVARCHAR}, 
+      #{salt,jdbcType=NVARCHAR}, #{avatar,jdbcType=NVARCHAR}, #{realName,jdbcType=NVARCHAR}, 
+      #{telephone,jdbcType=NVARCHAR}, #{email,jdbcType=NVARCHAR}, #{isAudit,jdbcType=INTEGER}, 
+      #{isLock,jdbcType=INTEGER}, #{addTime,jdbcType=TIMESTAMP}, #{address,jdbcType=NVARCHAR}, 
+      #{remark,jdbcType=NVARCHAR})
+  </insert>-->
+  <!--<update id="updateByExampleSelective" parameterType="map" >
+    update dt_manager
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.companyId != null" >
+        company_id = #{record.companyId,jdbcType=INTEGER},
+      </if>
+      <if test="record.roleId != null" >
+        role_id = #{record.roleId,jdbcType=INTEGER},
+      </if>
+      <if test="record.roleType != null" >
+        role_type = #{record.roleType,jdbcType=INTEGER},
+      </if>
+      <if test="record.userName != null" >
+        user_name = #{record.userName,jdbcType=NVARCHAR},
+      </if>
+      <if test="record.password != null" >
+        password = #{record.password,jdbcType=NVARCHAR},
+      </if>
+      <if test="record.salt != null" >
+        salt = #{record.salt,jdbcType=NVARCHAR},
+      </if>
+      <if test="record.avatar != null" >
+        avatar = #{record.avatar,jdbcType=NVARCHAR},
+      </if>
+      <if test="record.realName != null" >
+        real_name = #{record.realName,jdbcType=NVARCHAR},
+      </if>
+      <if test="record.telephone != null" >
+        telephone = #{record.telephone,jdbcType=NVARCHAR},
+      </if>
+      <if test="record.email != null" >
+        email = #{record.email,jdbcType=NVARCHAR},
+      </if>
+      <if test="record.isAudit != null" >
+        is_audit = #{record.isAudit,jdbcType=INTEGER},
+      </if>
+      <if test="record.isLock != null" >
+        is_lock = #{record.isLock,jdbcType=INTEGER},
+      </if>
+      <if test="record.addTime != null" >
+        add_time = #{record.addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.address != null" >
+        address = #{record.address,jdbcType=NVARCHAR},
+      </if>
+      <if test="record.remark != null" >
+        remark = #{record.remark,jdbcType=NVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update dt_manager
+    set id = #{record.id,jdbcType=INTEGER},
+      company_id = #{record.companyId,jdbcType=INTEGER},
+      role_id = #{record.roleId,jdbcType=INTEGER},
+      role_type = #{record.roleType,jdbcType=INTEGER},
+      user_name = #{record.userName,jdbcType=NVARCHAR},
+      password = #{record.password,jdbcType=NVARCHAR},
+      salt = #{record.salt,jdbcType=NVARCHAR},
+      avatar = #{record.avatar,jdbcType=NVARCHAR},
+      real_name = #{record.realName,jdbcType=NVARCHAR},
+      telephone = #{record.telephone,jdbcType=NVARCHAR},
+      email = #{record.email,jdbcType=NVARCHAR},
+      is_audit = #{record.isAudit,jdbcType=INTEGER},
+      is_lock = #{record.isLock,jdbcType=INTEGER},
+      add_time = #{record.addTime,jdbcType=TIMESTAMP},
+      address = #{record.address,jdbcType=NVARCHAR},
+      remark = #{record.remark,jdbcType=NVARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>-->
+</mapper>
