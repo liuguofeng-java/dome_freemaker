@@ -140,4 +140,24 @@ public class DtNavigation {
     public void setIsSys(Integer isSys) {
         this.isSys = isSys;
     }
+
+    @Override
+    public String toString() {
+        return "DtNavigation{" +
+                "id=" + id +
+                ", parentId=" + parentId +
+                ", channelId=" + channelId +
+                ", navType='" + navType + '\'' +
+                ", name='" + name + '\'' +
+                ", title='" + title + '\'' +
+                ", subTitle='" + subTitle + '\'' +
+                ", iconUrl='" + iconUrl + '\'' +
+                ", linkUrl='" + linkUrl + '\'' +
+                ", sortId=" + sortId +
+                ", isLock=" + isLock +
+                ", remark='" + remark + '\'' +
+                ", actionType='" + actionType + '\'' +
+                ", isSys=" + isSys +
+                '}';
+    }
 }

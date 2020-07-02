@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lgf.mapper.DtManagerLogMapper" >
+  <resultMap id="BaseResultMap" type="com.lgf.pojo.DtManagerLog" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="user_name" property="userName" jdbcType="NVARCHAR" />
+    <result column="action_type" property="actionType" jdbcType="NVARCHAR" />
+    <result column="remark" property="remark" jdbcType="NVARCHAR" />
+    <result column="user_ip" property="userIp" jdbcType="NVARCHAR" />
+    <result column="add_time" property="addTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+
+
+  <insert id="addLog" parameterType="com.lgf.pojo.DtManagerLog">
+    insert into dt_manager_log
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="userName != null" >
+        user_name,
+      </if>
+      <if test="actionType != null" >
+        action_type,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="userIp != null" >
+        user_ip,
+      </if>
+      <if test="addTime != null" >
+        add_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="userName != null" >
+        #{userName,jdbcType=NVARCHAR},
+      </if>
+      <if test="actionType != null" >
+        #{actionType,jdbcType=NVARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=NVARCHAR},
+      </if>
+      <if test="userIp != null" >
+        #{userIp,jdbcType=NVARCHAR},
+      </if>
+      <if test="addTime != null" >
+        #{addTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+
+ <!-- <insert id="insertSelective" parameterType="com.lgf.pojo.DtManagerLog" >
+    insert into dt_manager_log
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="userName != null" >
+        user_name,
+      </if>
+      <if test="actionType != null" >
+        action_type,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="userIp != null" >
+        user_ip,
+      </if>
+      <if test="addTime != null" >
+        add_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="userName != null" >
+        #{userName,jdbcType=NVARCHAR},
+      </if>
+      <if test="actionType != null" >
+        #{actionType,jdbcType=NVARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=NVARCHAR},
+      </if>
+      <if test="userIp != null" >
+        #{userIp,jdbcType=NVARCHAR},
+      </if>
+      <if test="addTime != null" >
+        #{addTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.lgf.pojo.DtManagerLog" >
+    update dt_manager_log
+    set user_id = #{userId,jdbcType=INTEGER},
+      user_name = #{userName,jdbcType=NVARCHAR},
+      action_type = #{actionType,jdbcType=NVARCHAR},
+      remark = #{remark,jdbcType=NVARCHAR},
+      user_ip = #{userIp,jdbcType=NVARCHAR},
+      add_time = #{addTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>-->
+</mapper>

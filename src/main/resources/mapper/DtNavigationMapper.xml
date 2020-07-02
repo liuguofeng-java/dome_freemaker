@@ -17,7 +17,12 @@
     <result column="action_type" property="actionType" jdbcType="NVARCHAR" />
     <result column="is_sys" property="isSys" jdbcType="INTEGER" />
   </resultMap>
-
+  <select id="getUserList" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select nav.* from dt_manager u
+    right join dt_manager_role_list role on u.id = role.role_id
+    right join dt_navigation nav on role.navigation_id = nav.id
+    where u.id = #{userId} order by sort_id asc
+  </select>
 <!--  <insert id="insert" parameterType="com.lgf.pojo.DtNavigation" >
     insert into dt_navigation (id, parent_id, channel_id, 
       nav_type, name, title, 

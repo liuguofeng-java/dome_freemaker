@@ -1,8 +1,11 @@
 package com.lgf.controller;
 
 import com.lgf.impl.DtManagerImpl;
+import com.lgf.impl.DtManagerLogImpl;
 import com.lgf.pojo.DtManager;
+import com.lgf.pojo.DtManagerLog;
 import com.lgf.pojo.json.JsonResult;
+import com.lgf.utils.IPUtil;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,11 +18,17 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 @Controller
 public class IndexController {
+    //用户表
     @Autowired
     private DtManagerImpl dtManagerImpl;
+    @Autowired
+    private DtManagerLogImpl dtManagerLogImpl;
+
     public static Log log = LogFactory.getLog(IndexController.class);
     /*
     * 登录页
@@ -34,32 +43,43 @@ public class IndexController {
     * */
     @ResponseBody
     @RequestMapping(value = "userLogin",method = RequestMethod.POST)
-    public JsonResult userLogin(String username, String password, boolean ck, HttpServletRequest request, HttpServletResponse response){
+    public JsonResult userLogin(String username, String password, boolean ck, HttpServletRequest request, HttpServletResponse response) throws Exception{
+        JsonResult jsonResult = new JsonResult();
+        DtManagerLog dtManagerLog = new DtManagerLog();
         try{
             DtManager dtManager = dtManagerImpl.userLogin(username, password);
-            //记住密码
-            if(ck && dtManager != null){
-                Cookie cookie = new Cookie("user",username + "#" + password);
-                cookie.setMaxAge(24 * 60 * 60 * 7);
-                cookie.setPath("/");
-                response.addCookie(cookie);
-            }else {
-                Cookie cookie = new Cookie("user",null);
-                cookie.setMaxAge(0);
-                cookie.setPath("/");
-                response.addCookie(cookie);
-            }
             if(dtManager != null){
                 HttpSession session = request.getSession();
                 session.setAttribute("user",dtManager);
-                return JsonResult.data(200,"ok",null);
+                jsonResult.setCode(200);
+                jsonResult.setMsg("ok");
             }else{
-                return JsonResult.data(200,"用户名或密码错误",null);
+                jsonResult.setCode(200);
+                jsonResult.setMsg("用户名或密码错误");
             }
+            //记住密码
+            String userCookic = username + "#" + password;
+            int maxAge = 24 * 60 * 60 * 7;
+            if(dtManager == null || !ck){
+                userCookic = null;
+                maxAge = 0;
+            }
+            Cookie cookie = new Cookie("user",userCookic);
+            cookie.setMaxAge(maxAge);
+            cookie.setPath("/");
+            response.addCookie(cookie);
         }catch (Exception ex){
-            log.error("userLogin:服务器发生异常");
-            return JsonResult.data(500,"userLogin:服务器发生异常",null);
+            log.error("userLogin:服务器发生异常:"+ex);
+            jsonResult.setCode(500);
+            jsonResult.setMsg("userLogin:服务器发生异常:"+ex);
         }
+        dtManagerLog.setAddTime(new Date());
+        dtManagerLog.setUserIp(IPUtil.getIpAddress(request));
+        dtManagerLog.setUserName(username);
+        dtManagerLog.setRemark(jsonResult.getMsg());
+        dtManagerLog.setActionType("Login");
+        dtManagerLogImpl.addLog(dtManagerLog);
+        return jsonResult;
     }
 
     /*

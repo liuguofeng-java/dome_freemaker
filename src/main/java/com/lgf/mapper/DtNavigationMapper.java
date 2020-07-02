@@ -7,4 +7,5 @@ import org.apache.ibatis.annotations.Param;
 
 public interface DtNavigationMapper {
 
+    List<DtNavigation> getUserList(@Param("userId") int userId);
 }
