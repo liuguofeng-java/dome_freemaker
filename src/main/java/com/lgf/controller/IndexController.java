@@ -83,13 +83,6 @@ public class IndexController {
     }
 
     /*
-    * 到主页
-    * */
-    @RequestMapping("/home")
-    public String home(){
-        return "home/index";
-    }
-    /*
     * 退出
     * */
     @RequestMapping("/quit")
