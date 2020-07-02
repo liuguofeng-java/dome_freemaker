@@ -2,12 +2,12 @@ package com.lgf.controller;
 
 import com.lgf.impl.DtNavigationImpl;
 import com.lgf.pojo.DtManager;
+import com.lgf.pojo.DtNavigation;
 import com.lgf.pojo.json.JsonResult;
-import com.lgf.pojo.json.UserList;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
-@Service
+@Controller
 public class HomeController {
     @Autowired
     private DtNavigationImpl dtNavigationImpl;
@@ -32,9 +32,9 @@ public class HomeController {
     * 获取用户列表
     * */
     @ResponseBody
-    @RequestMapping(value = "",method = RequestMethod.POST)
+    @RequestMapping(value = "/getUserList",method = RequestMethod.POST)
     public JsonResult getUserList(HttpSession session){
-        List<UserList> userLists = null;
+        List<DtNavigation> userLists = null;
         JsonResult jsonResult = new JsonResult();
         try {
             DtManager dtManager = (DtManager)session.getAttribute("user");
