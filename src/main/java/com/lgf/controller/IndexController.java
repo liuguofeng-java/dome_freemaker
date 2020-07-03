@@ -2,8 +2,10 @@ package com.lgf.controller;
 
 import com.lgf.impl.DtManagerImpl;
 import com.lgf.impl.DtManagerLogImpl;
+import com.lgf.impl.DtNavigationImpl;
 import com.lgf.pojo.DtManager;
 import com.lgf.pojo.DtManagerLog;
+import com.lgf.pojo.DtNavigation;
 import com.lgf.pojo.json.JsonResult;
 import com.lgf.utils.IPUtil;
 import org.apache.commons.logging.Log;
@@ -20,14 +22,19 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 @Controller
 public class IndexController {
     //用户表
     @Autowired
     private DtManagerImpl dtManagerImpl;
+    //登录日志
     @Autowired
     private DtManagerLogImpl dtManagerLogImpl;
+    //用户菜单
+    @Autowired
+    private DtNavigationImpl dtNavigationImpl;
 
     public static Log log = LogFactory.getLog(IndexController.class);
     /*
@@ -47,10 +54,16 @@ public class IndexController {
         JsonResult jsonResult = new JsonResult();
         DtManagerLog dtManagerLog = new DtManagerLog();
         try{
+            //验证用户登录状态
             DtManager dtManager = dtManagerImpl.userLogin(username, password);
             if(dtManager != null){
+                //获取用户列表信息
+                List<DtNavigation> userList = dtNavigationImpl.getUserList(dtManager.getId());
                 HttpSession session = request.getSession();
+                //用户信息
                 session.setAttribute("user",dtManager);
+                //用户列表消息
+                session.setAttribute("getUserList",userList);
                 jsonResult.setCode(200);
                 jsonResult.setMsg("ok");
             }else{
@@ -73,6 +86,7 @@ public class IndexController {
             jsonResult.setCode(500);
             jsonResult.setMsg("userLogin:服务器发生异常:"+ex);
         }
+        //登录日志
         dtManagerLog.setAddTime(new Date());
         dtManagerLog.setUserIp(IPUtil.getIpAddress(request));
         dtManagerLog.setUserName(username);

@@ -3,7 +3,6 @@ package com.lgf.impl;
 import com.lgf.dao.DtNavigationDao;
 import com.lgf.mapper.DtNavigationMapper;
 import com.lgf.pojo.DtNavigation;
-import com.lgf.pojo.json.UserList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,21 +18,24 @@ public class DtNavigationImpl implements DtNavigationDao {
     * 获取用户列表
     * */
     @Override
-    public List<UserList> getUserList(int userId) {
-        List<UserList> userLists= new ArrayList<>();
-        List<DtNavigation> dtNavigation = dtNavigationMapper.getUserList(userId);
-        for(int i = 0;i < dtNavigation.size();i++){
-            if(dtNavigation.get(i).getParentId() == 0){
-                UserList userList = new UserList();
-                userList.setDtNavigation(dtNavigation.get(i));
-                userLists.add(userList);
+    public List<DtNavigation> getUserList(int userId) {
+        List<DtNavigation> userLists = dtNavigationMapper.getUserList(userId);
+        List<DtNavigation> dtNavigations= new ArrayList<>();
+        for(int i = 0;i < userLists.size();i++){
+            if(userLists.get(i).getParentId().equals(0)){
+                dtNavigations.add(userLists.get(i));
             }
         }
-        for(int i = 0;i < dtNavigation.size();i++){
-            if(dtNavigation.get(i).getParentId() != 0){
+        for(int i = 0;i < dtNavigations.size();i++){
+            List<DtNavigation> dt = new ArrayList<>();
+            for(int j = 0;j < userLists.size();j++){
+                if(userLists.get(j).getParentId().equals(dtNavigations.get(i).getId())){
+                    dt.add(userLists.get(j));
+                }
+            }
+            dtNavigations.get(i).setChildren(dt);
+        }
 
-            }
-        }
-        return userLists;
+        return dtNavigations;
     }
 }

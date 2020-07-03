@@ -41,7 +41,11 @@
                     </div>
                 </li>
 
-                <li class="active">
+
+
+
+
+                <!--<li class="active">
                     <a href="#"><i class="fa fa-table"></i> <span class="nav-label">表格</span><span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level collapse">
                         <li><a href="table_basic.html">静态表格</a></li>
@@ -51,26 +55,30 @@
                     </ul>
                 </li>
                 <li>
-                    <a href="#"><i class="fa fa-shopping-cart"></i> <span class="nav-label">商城</span><span class="fa arrow"></span></a>
+                    <a href="layouts.html"><i class="fa fa-diamond"></i> <span class="nav-label">Layouts</span></a>
+                </li>-->
+
+
+                <li th:each="dt : ${session.getUserList}">
+
+                    <a th:if="${dt.getChildren() == ''}" href="layouts.html"><i class="fa fa-diamond"></i> <span class="nav-label">Layouts</span></a>
+
+                    <a th:if="${dt.getChildren() != ''}" href="#"><i class="fa fa-table"></i> <span class="nav-label">表格</span><span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level collapse">
-                        <li><a href="ecommerce_products_grid.html">产品图表</a></li>
-                        <li><a href="ecommerce_product_list.html">产品列表</a></li>
-                        <li><a href="ecommerce_product.html">产品编辑</a></li>
-                        <li><a href="ecommerce_product_detail.html">产品详情</a></li>
-                        <li><a href="ecommerce-cart.html">购物车</a></li>
-                        <li><a href="ecommerce-orders.html">订购页</a></li>
-                        <li><a href="ecommerce_payments.html">支付页</a></li>
+                        <li><a href="table_basic.html">静态表格</a></li>
+                        <li><a href="table_data_tables.html">数据表格</a></li>
+                        <li><a href="table_foo_table.html">Foo 表格</a></li>
+                        <li><a href="jq_grid.html">jqGrid</a></li>
                     </ul>
                 </li>
                 <li>
-                    <a href="#"><i class="fa fa-picture-o"></i> <span class="nav-label">相册</span><span class="fa arrow"></span></a>
-                    <ul class="nav nav-second-level collapse">
-                        <li><a href="basic_gallery.html">基本图库</a></li>
-                        <li><a href="slick_carousel.html">图片切换</a></li>
-                        <li><a href="carousel.html">Bootstrap 相册</a></li>
-
-                    </ul>
+                    <a href="layouts.html"><i class="fa fa-diamond"></i> <span class="nav-label">Layouts</span></a>
                 </li>
+
+
+
+
+
             </ul>
 
         </div>
@@ -192,7 +200,15 @@
         </div>
         <div class="row  border-bottom white-bg dashboard-header">
 
-啊啊啊啊
+            <!--<div th:text="${session.getUserList}">-->
+
+            </div>
+            <table>
+                <tr th:each="dt : ${session.getUserList}">
+                    <td>[[${dt.title}]]</td>
+                    <td>[[${dt.children}]]</td>
+                </tr>
+            </table>
 
         </div>
         <div class="footer">

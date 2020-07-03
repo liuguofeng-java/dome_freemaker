@@ -1,5 +1,7 @@
 package com.lgf.pojo;
 
+import java.util.List;
+
 public class DtNavigation {
     private Integer id;
 
@@ -28,6 +30,16 @@ public class DtNavigation {
     private String actionType;
 
     private Integer isSys;
+
+    private List<DtNavigation> children;
+
+    public List<DtNavigation> getChildren() {
+        return children;
+    }
+
+    public void setChildren(List<DtNavigation> children) {
+        this.children = children;
+    }
 
     public Integer getId() {
         return id;

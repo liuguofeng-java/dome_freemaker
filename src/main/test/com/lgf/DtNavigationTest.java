@@ -4,7 +4,6 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.lgf.impl.DtNavigationImpl;
 import com.lgf.pojo.DtNavigation;
-import com.lgf.pojo.json.UserList;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +20,7 @@ public class DtNavigationTest {
 
     @Test
     public void getUserList() throws JsonProcessingException {
-        List<UserList> userList = dtNavigationImpl.getUserList(1);
+        List<DtNavigation> userList = dtNavigationImpl.getUserList(1);
         ObjectMapper mapper=new ObjectMapper();//先创建objmapper的对象
         String string = mapper.writeValueAsString(userList);
         System.out.println(string);
