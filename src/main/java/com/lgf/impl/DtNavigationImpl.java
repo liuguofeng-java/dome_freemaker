@@ -35,7 +35,6 @@ public class DtNavigationImpl implements DtNavigationDao {
             }
             dtNavigations.get(i).setChildren(dt);
         }
-
         return dtNavigations;
     }
 }

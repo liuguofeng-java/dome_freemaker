@@ -1,5 +1,6 @@
 package com.lgf;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.lgf.impl.DtNavigationImpl;
@@ -18,6 +19,7 @@ public class DtNavigationTest {
     @Autowired
     private DtNavigationImpl dtNavigationImpl;
 
+    @JsonIgnore
     @Test
     public void getUserList() throws JsonProcessingException {
         List<DtNavigation> userList = dtNavigationImpl.getUserList(1);
